@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ImageBackground, StyleSheet, Text } from 'react-native'
 import { inject, observer } from './node_modules/mobx-react/native'
 
 @inject('store')
@@ -8,30 +8,24 @@ class FoodList extends Component {
   render() {
     const { foodsOfDay } = this.props.store
     return (
-      <View>
-        <FlatList
-          data={foodsOfDay}
-          renderItem={FoodListItem}
-          keyExtractor={({ imageUrl }) => imageUrl}/>
-      </View>
+      <FlatList
+        data={foodsOfDay}
+        renderItem={FoodListItem}
+        keyExtractor={({ id }) => id}/>
     )
   }
 }
 
-const FoodListItem = food =>
-  <View>
-    <Text>lol</Text>
-    <Text>{food.imageUrl}</Text>
-    <Text>{food.reaction}</Text>
-    <Text>{food.date}</Text>
-  </View>
+const FoodListItem = ({ item: food }) =>
+  <ImageBackground source={{ uri: food.imageUrl }} style={styles.image}>
+    <Text>lol inside</Text>
+  </ImageBackground>
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+  image: {
+    backgroundColor: '#ff0',
+    width: '100%',
+    height: 100
   }
 })
 
