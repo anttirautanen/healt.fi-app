@@ -9,7 +9,6 @@ class FoodList extends Component {
     const { foodsOfDay } = this.props.store
     return (
       <View>
-        <Text>Food list</Text>
         <FlatList
           data={foodsOfDay}
           renderItem={FoodListItem}
