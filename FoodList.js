@@ -10,7 +10,6 @@ class FoodList extends Component {
     return (
       <View>
         <Text>Food list</Text>
-        {/*{foodsOfDay.map(food => <View key={food.date}><Text>{food.imageUrl}</Text><Text>{food.reaction}</Text><Text>{food.date}</Text></View>)}*/}
         <FlatList
           data={foodsOfDay}
           renderItem={FoodListItem}
@@ -20,7 +19,6 @@ class FoodList extends Component {
   }
 }
 
-// PureComponent
 const FoodListItem = food =>
   <View>
     <Text>lol</Text>
