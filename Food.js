@@ -1,5 +1,6 @@
 class Food {
-  constructor(imageUrl, reaction, date) {
+  constructor(id, imageUrl, reaction, date) {
+    this.id = id
     this.imageUrl = imageUrl
     this.reaction = reaction
     this.date = date
