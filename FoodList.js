@@ -23,7 +23,6 @@ const FoodListItem = ({ item: food }) =>
 
 const styles = StyleSheet.create({
   image: {
-    backgroundColor: '#ff0',
     width: '100%',
     height: 100
   }
