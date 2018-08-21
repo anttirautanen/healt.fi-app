@@ -11,16 +11,16 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 0,
     flexShrink: 0,
-    backgroundColor: ALMOST_WHITE,
+    backgroundColor: PRIMARY_DARK,
     paddingVertical: 2,
     paddingHorizontal: 6,
   },
   text: {
     flexGrow: 0,
     flexShrink: 0,
-    color: PRIMARY_DARK,
+    color: ALMOST_WHITE,
     fontWeight: '300',
-    fontSize: 30
+    fontSize: 22
   }
 })
 
