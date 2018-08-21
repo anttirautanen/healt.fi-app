@@ -23,7 +23,7 @@ class DomainStore {
   }
 }
 
-const randomImage = () => `https://dummyimage.com/300x100/${randomColor()}/${randomColor()}`
+const randomImage = () => `https://dummyimage.com/375x211/${randomColor()}/${randomColor()}`
 const randomColor = () => Math.floor(Math.random()*16777215).toString(16)
 
 export default new DomainStore()
