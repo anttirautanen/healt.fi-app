@@ -1,30 +1,64 @@
 import React, { Component } from 'react'
-import { FlatList, Image, ImageBackground, StyleSheet, View } from 'react-native'
-import { ALMOST_WHITE } from './colors'
+import { FlatList, Image, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native'
+import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
+import Logo from './header/Logo'
+import { FOOD_DETAILS } from './Navigator'
 import { inject, observer } from './node_modules/mobx-react/native'
 import { POSITIVE } from './Reaction'
 
 @inject('store')
 @observer
 class FoodList extends Component {
+  constructor(props) {
+    super(props)
+    this.onPressFoodListItem = this.onPressFoodListItem.bind(this)
+  }
+
   render() {
     const { foodsOfDay } = this.props.store
     return (
       <FlatList
         data={foodsOfDay}
-        renderItem={FoodListItem}
+        renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} food={item}/>}
         keyExtractor={({ id }) => id}/>
     )
   }
+
+  onPressFoodListItem(food) {
+    const { navigation } = this.props
+    navigation.navigate(FOOD_DETAILS, { food })
+  }
 }
 
-const FoodListItem = ({ item: food }) => {
-  const reactionIcon = food.reaction === POSITIVE ? require('./assets/icons/thumbsUp.png') : require('./assets/icons/thumbsDown.png')
-  return (
-    <ImageBackground source={{ uri: food.imageUrl }} style={styles.image}>
-      <View style={styles.reactionContainer}><Image source={reactionIcon}/></View>
-    </ImageBackground>
-  )
+class FoodListItem extends Component {
+  constructor(props) {
+    super(props)
+    this.onPressImage = this.onPressImage.bind(this)
+    this.onPressReaction = this.onPressReaction.bind(this)
+  }
+
+  render() {
+    const { food } = this.props
+    const reactionIcon = food.reaction === POSITIVE ? require('./assets/icons/thumbsUp.png') : require('./assets/icons/thumbsDown.png')
+    return (
+      <TouchableHighlight onPress={this.onPressImage} underlayColor={PRIMARY_DARK}>
+        <ImageBackground source={{ uri: food.imageUrl }} style={styles.image}>
+          <TouchableHighlight style={styles.reactionContainer} onPress={this.onPressReaction} underlayColor={PRIMARY_DARK}>
+            <Image source={reactionIcon}/>
+          </TouchableHighlight>
+        </ImageBackground>
+      </TouchableHighlight>
+    )
+  }
+
+  onPressImage() {
+    const { onPressFoodListItem, food } = this.props
+    onPressFoodListItem(food)
+  }
+
+  onPressReaction = () => {
+    console.log('on press reaction')
+  }
 }
 
 const styles = StyleSheet.create({
