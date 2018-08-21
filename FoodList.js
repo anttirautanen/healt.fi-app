@@ -9,6 +9,10 @@ import { POSITIVE } from './Reaction'
 @inject('store')
 @observer
 class FoodList extends Component {
+  static navigationOptions = {
+    headerTitle: <Logo/>
+  }
+
   constructor(props) {
     super(props)
     this.onPressFoodListItem = this.onPressFoodListItem.bind(this)
