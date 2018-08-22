@@ -25,6 +25,13 @@ class DomainStore {
   getFoodById(foodId) {
     return this.foodsOfDay.find(({ id }) => id ===foodId)
   }
+
+  updateReaction(foodId, reaction) {
+    const foodsOfDay = this.foodsOfDay.slice()
+    const foodToUpdateIndex = foodsOfDay.findIndex(({ id }) => id === foodId)
+    foodsOfDay[foodToUpdateIndex].reaction = reaction
+    this.foodsOfDay.replace(foodsOfDay)
+  }
 }
 
 const randomImage = () => `https://dummyimage.com/375x211/${randomColor()}/${randomColor()}`
