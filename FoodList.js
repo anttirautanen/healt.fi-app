@@ -1,3 +1,4 @@
+import { toJS } from 'mobx'
 import React, { Component } from 'react'
 import { FlatList, Image, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native'
 import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
@@ -19,11 +20,10 @@ class FoodList extends Component {
   }
 
   render() {
-    const { foodsOfDay } = this.props.store
     return (
       <FlatList
-        data={foodsOfDay}
         renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} food={item}/>}
+        data={toJS(Store.foodsOfDay)}
         keyExtractor={({ id }) => id}/>
     )
   }
