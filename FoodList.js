@@ -17,20 +17,26 @@ class FoodList extends Component {
   constructor(props) {
     super(props)
     this.onPressFoodListItem = this.onPressFoodListItem.bind(this)
+    this.onPressReaction = this.onPressReaction.bind(this)
   }
 
   render() {
     return (
       <FlatList
-        renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} food={item}/>}
+        style={styles.container}
         data={toJS(Store.foodsOfDay)}
+        renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} onPressReaction={this.onPressReaction} food={item}/>}
         keyExtractor={({ id }) => id}/>
     )
   }
 
   onPressFoodListItem(food) {
     const { navigation } = this.props
-    navigation.navigate(FOOD_DETAILS, { food })
+    navigation.navigate(FOOD_DETAILS, { foodId: food.id })
+  }
+
+  onPressReaction(food) {
+    Actions.updateReaction(food.id, food.reaction === POSITIVE ? NEGATIVE : POSITIVE)
   }
 }
 
@@ -61,11 +67,15 @@ class FoodListItem extends Component {
   }
 
   onPressReaction = () => {
-    console.log('on press reaction')
+    const { onPressReaction, food } = this.props
+    onPressReaction(food)
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: PRIMARY_DARK
+  },
   image: {
     alignItems: 'stretch',
     justifyContent: 'space-between',
