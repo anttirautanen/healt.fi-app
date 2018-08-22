@@ -21,6 +21,10 @@ class DomainStore {
       new Food('bnm', randomImage(), POSITIVE, '2018-08-21 20:33:32')
     ]
   }
+
+  getFoodById(foodId) {
+    return this.foodsOfDay.find(({ id }) => id ===foodId)
+  }
 }
 
 const randomImage = () => `https://dummyimage.com/375x211/${randomColor()}/${randomColor()}`
