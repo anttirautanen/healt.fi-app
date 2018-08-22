@@ -1,11 +1,13 @@
 import { toJS } from 'mobx'
 import React, { Component } from 'react'
 import { FlatList, Image, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native'
+import Actions from './Actions'
 import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
+import Store from './DomainStore'
 import Logo from './header/Logo'
 import { FOOD_DETAILS } from './Navigator'
 import { inject, observer } from './node_modules/mobx-react/native'
-import { POSITIVE } from './Reaction'
+import { NEGATIVE, POSITIVE } from './Reaction'
 
 @inject('store')
 @observer
