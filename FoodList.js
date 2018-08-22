@@ -1,4 +1,5 @@
 import { toJS } from 'mobx'
+import { observer } from 'mobx-react/native'
 import React, { Component } from 'react'
 import { FlatList, Image, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native'
 import Actions from './Actions'
@@ -6,10 +7,8 @@ import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
 import Store from './DomainStore'
 import Logo from './header/Logo'
 import { FOOD_DETAILS } from './Navigator'
-import { inject, observer } from './node_modules/mobx-react/native'
 import { NEGATIVE, POSITIVE } from './Reaction'
 
-@inject('store')
 @observer
 class FoodList extends Component {
   static navigationOptions = {
