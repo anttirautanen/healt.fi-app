@@ -7,18 +7,18 @@ class DomainStore {
 
   init() {
     this.foodsOfDay = [
-      new Food('ads', randomImage(), POSITIVE),
-      new Food('qwe', randomImage(), POSITIVE),
-      new Food('zxc', randomImage(), NEGATIVE),
-      new Food('ert', randomImage(), POSITIVE),
-      new Food('dfg', randomImage(), POSITIVE),
-      new Food('vbn', randomImage(), POSITIVE),
-      new Food('wer', randomImage(), POSITIVE),
-      new Food('sdf', randomImage(), NEGATIVE),
-      new Food('cvb', randomImage(), POSITIVE),
-      new Food('rty', randomImage(), POSITIVE),
-      new Food('fgh', randomImage(), NEGATIVE),
-      new Food('bnm', randomImage(), POSITIVE)
+      new Food('ads', randomImage(), POSITIVE, '2018-08-21 8:33:32'),
+      new Food('qwe', randomImage(), POSITIVE, '2018-08-21 8:33:32'),
+      new Food('zxc', randomImage(), NEGATIVE, '2018-08-21 10:33:32'),
+      new Food('ert', randomImage(), POSITIVE, '2018-08-21 10:33:32'),
+      new Food('dfg', randomImage(), POSITIVE, '2018-08-21 12:33:32'),
+      new Food('vbn', randomImage(), POSITIVE, '2018-08-21 12:33:32'),
+      new Food('wer', randomImage(), POSITIVE, '2018-08-21 14:33:32'),
+      new Food('sdf', randomImage(), NEGATIVE, '2018-08-21 14:33:32'),
+      new Food('cvb', randomImage(), POSITIVE, '2018-08-21 17:33:32'),
+      new Food('rty', randomImage(), POSITIVE, '2018-08-21 17:33:32'),
+      new Food('fgh', randomImage(), NEGATIVE, '2018-08-21 20:33:32'),
+      new Food('bnm', randomImage(), POSITIVE, '2018-08-21 20:33:32')
     ]
   }
 }
