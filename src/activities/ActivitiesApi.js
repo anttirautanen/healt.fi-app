@@ -1,4 +1,4 @@
-import BaseApi from './BaseApi'
+import BaseApi from '../../BaseApi'
 
 class ActivitiesApi extends BaseApi {
   fetchActivities() {

@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react'
 import React, { Component } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Actions from './Actions'
-import { PRIMARY, PRIMARY_DARK, WHITE } from './colors'
-import Store from './DomainStore'
-import { NEGATIVE, POSITIVE } from './Reaction'
+import Actions from '../../Actions'
+import { PRIMARY, PRIMARY_DARK, WHITE } from '../../colors'
+import Store from '../../DomainStore'
+import { NEGATIVE, POSITIVE } from '../../Reaction'
 
 @observer
 class ActivityDetails extends Component {
@@ -30,10 +30,10 @@ class ActivityDetails extends Component {
         <Image source={{ uri: activity.imageUrl }} style={styles.image}/>
         <View style={styles.reactionContainer}>
           <TouchableOpacity style={[styles.reactionButton, activity.reaction === POSITIVE && styles.selectedReactionButton]} onPress={this.onPressPositiveReaction} underlayColor={PRIMARY_DARK}>
-            <Image source={require('./assets/icons/thumbsUp.png')} style={styles.reactionImage}/>
+            <Image source={require('../../assets/icons/thumbsUp.png')} style={styles.reactionImage}/>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.reactionButton, activity.reaction === NEGATIVE && styles.selectedReactionButton]} onPress={this.onPressNegativeReaction} underlayColor={PRIMARY_DARK}>
-            <Image source={require('./assets/icons/thumbsDown.png')} style={styles.reactionImage}/>
+            <Image source={require('../../assets/icons/thumbsDown.png')} style={styles.reactionImage}/>
           </TouchableOpacity>
         </View>
       </View>

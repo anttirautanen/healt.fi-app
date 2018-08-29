@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import ActivitiesApi from './ActivitiesApi'
+import ActivitiesApi from './src/activities/ActivitiesApi'
 import { LOADED, LOADING } from './StoreStatus'
 
 class DomainStore {

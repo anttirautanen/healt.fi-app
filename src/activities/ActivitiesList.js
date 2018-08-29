@@ -2,13 +2,13 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react/native'
 import React, { Component } from 'react'
 import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import Actions from './Actions'
-import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
-import Store from './DomainStore'
-import Logo from './header/Logo'
-import { ACTIVITY_DETAILS } from './Navigator'
-import { NEGATIVE, POSITIVE } from './Reaction'
-import { LOADED } from './StoreStatus'
+import Actions from '../../Actions'
+import { ALMOST_WHITE, PRIMARY_DARK } from '../../colors'
+import Store from '../../DomainStore'
+import Logo from '../../header/Logo'
+import { ACTIVITY_DETAILS } from '../../Navigator'
+import { NEGATIVE, POSITIVE } from '../../Reaction'
+import { LOADED } from '../../StoreStatus'
 
 @observer
 class ActivitiesList extends Component {
@@ -55,7 +55,7 @@ class ActivitiesListItem extends Component {
 
   render() {
     const { activity } = this.props
-    const reactionIcon = activity.reaction === POSITIVE ? require('./assets/icons/thumbsUp.png') : require('./assets/icons/thumbsDown.png')
+    const reactionIcon = activity.reaction === POSITIVE ? require('../../assets/icons/thumbsUp.png') : require('../../assets/icons/thumbsDown.png')
     return (
       <TouchableHighlight onPress={this.onPressImage} underlayColor={PRIMARY_DARK}>
         <ImageBackground source={{ uri: activity.imageUrl }} style={styles.image}>
