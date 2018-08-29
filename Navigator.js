@@ -1,15 +1,15 @@
 import { createStackNavigator } from 'react-navigation'
-import FoodDetails from './FoodDetails'
-import FoodList from './FoodList'
+import ActivityDetails from './ActivityDetails'
+import ActivitiesList from './ActivitiesList'
 
-export const FOOD_LIST = 'FoodList'
-export const FOOD_DETAILS = 'FoodDetails'
+export const ACTIVITIES_LIST = 'ActivitiesList'
+export const ACTIVITY_DETAILS = 'ActivityDetails'
 
 const Navigator = createStackNavigator({
-  [FOOD_LIST]: FoodList,
-  [FOOD_DETAILS]: FoodDetails
+  [ACTIVITIES_LIST]: ActivitiesList,
+  [ACTIVITY_DETAILS]: ActivityDetails
 }, {
-  initialRouteName: FOOD_LIST
+  initialRouteName: ACTIVITIES_LIST
 })
 
 export default Navigator

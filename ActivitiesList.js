@@ -6,19 +6,19 @@ import Actions from './Actions'
 import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
 import Store from './DomainStore'
 import Logo from './header/Logo'
-import { FOOD_DETAILS } from './Navigator'
+import { ACTIVITY_DETAILS } from './Navigator'
 import { NEGATIVE, POSITIVE } from './Reaction'
 import { LOADED } from './StoreStatus'
 
 @observer
-class FoodList extends Component {
+class ActivitiesList extends Component {
   static navigationOptions = {
     headerTitle: <Logo/>
   }
 
   constructor(props) {
     super(props)
-    this.onPressFoodListItem = this.onPressFoodListItem.bind(this)
+    this.onPressActivitiesListItem = this.onPressActivitiesListItem.bind(this)
     this.onPressReaction = this.onPressReaction.bind(this)
   }
 
@@ -30,23 +30,23 @@ class FoodList extends Component {
     return (
       <FlatList
         style={styles.container}
-        data={toJS(Store.foodsOfDay)}
-        renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} onPressReaction={this.onPressReaction} food={item}/>}
+        data={toJS(Store.activities)}
+        renderItem={({ item }) => <ActivitiesListItem onPressActivitiesListItem={this.onPressActivitiesListItem} onPressReaction={this.onPressReaction} activity={item}/>}
         keyExtractor={({ id }) => id.toString()}/>
     )
   }
 
-  onPressFoodListItem(food) {
+  onPressActivitiesListItem(activity) {
     const { navigation } = this.props
-    navigation.navigate(FOOD_DETAILS, { foodId: food.id })
+    navigation.navigate(ACTIVITY_DETAILS, { activityId: activity.id })
   }
 
-  onPressReaction(food) {
-    Actions.updateReaction(food.id, food.reaction === POSITIVE ? NEGATIVE : POSITIVE)
+  onPressReaction(activity) {
+    Actions.updateReaction(activity.id, activity.reaction === POSITIVE ? NEGATIVE : POSITIVE)
   }
 }
 
-class FoodListItem extends Component {
+class ActivitiesListItem extends Component {
   constructor(props) {
     super(props)
     this.onPressImage = this.onPressImage.bind(this)
@@ -54,11 +54,11 @@ class FoodListItem extends Component {
   }
 
   render() {
-    const { food } = this.props
-    const reactionIcon = food.reaction === POSITIVE ? require('./assets/icons/thumbsUp.png') : require('./assets/icons/thumbsDown.png')
+    const { activity } = this.props
+    const reactionIcon = activity.reaction === POSITIVE ? require('./assets/icons/thumbsUp.png') : require('./assets/icons/thumbsDown.png')
     return (
       <TouchableHighlight onPress={this.onPressImage} underlayColor={PRIMARY_DARK}>
-        <ImageBackground source={{ uri: food.imageUrl }} style={styles.image}>
+        <ImageBackground source={{ uri: activity.imageUrl }} style={styles.image}>
           <TouchableHighlight style={styles.reactionContainer} onPress={this.onPressReaction} underlayColor={PRIMARY_DARK}>
             <Image source={reactionIcon}/>
           </TouchableHighlight>
@@ -68,13 +68,13 @@ class FoodListItem extends Component {
   }
 
   onPressImage() {
-    const { onPressFoodListItem, food } = this.props
-    onPressFoodListItem(food)
+    const { onPressActivitiesListItem, activity } = this.props
+    onPressActivitiesListItem(activity)
   }
 
   onPressReaction = () => {
-    const { onPressReaction, food } = this.props
-    onPressReaction(food)
+    const { onPressReaction, activity } = this.props
+    onPressReaction(activity)
   }
 }
 
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FoodList
+export default ActivitiesList

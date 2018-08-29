@@ -7,11 +7,11 @@ import Store from './DomainStore'
 import { NEGATIVE, POSITIVE } from './Reaction'
 
 @observer
-class FoodDetails extends Component {
+class ActivityDetails extends Component {
   static navigationOptions = ({ navigation }) => {
-    const food = Store.getFoodById(navigation.getParam('foodId'))
+    const activity = Store.getActivityById(navigation.getParam('activityId'))
     return {
-      title: food.date
+      title: activity.date
     }
   }
 
@@ -23,16 +23,16 @@ class FoodDetails extends Component {
 
   render() {
     const { navigation } = this.props
-    const foodId = navigation.getParam('foodId')
-    const food = Store.getFoodById(foodId)
+    const activityId = navigation.getParam('activityId')
+    const activity = Store.getActivityById(activityId)
     return (
       <View style={styles.container}>
-        <Image source={{ uri: food.imageUrl }} style={styles.image}/>
+        <Image source={{ uri: activity.imageUrl }} style={styles.image}/>
         <View style={styles.reactionContainer}>
-          <TouchableOpacity style={[styles.reactionButton, food.reaction === POSITIVE && styles.selectedReactionButton]} onPress={this.onPressPositiveReaction} underlayColor={PRIMARY_DARK}>
+          <TouchableOpacity style={[styles.reactionButton, activity.reaction === POSITIVE && styles.selectedReactionButton]} onPress={this.onPressPositiveReaction} underlayColor={PRIMARY_DARK}>
             <Image source={require('./assets/icons/thumbsUp.png')} style={styles.reactionImage}/>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.reactionButton, food.reaction === NEGATIVE && styles.selectedReactionButton]} onPress={this.onPressNegativeReaction} underlayColor={PRIMARY_DARK}>
+          <TouchableOpacity style={[styles.reactionButton, activity.reaction === NEGATIVE && styles.selectedReactionButton]} onPress={this.onPressNegativeReaction} underlayColor={PRIMARY_DARK}>
             <Image source={require('./assets/icons/thumbsDown.png')} style={styles.reactionImage}/>
           </TouchableOpacity>
         </View>
@@ -42,18 +42,18 @@ class FoodDetails extends Component {
 
   onPressPositiveReaction() {
     const { navigation } = this.props
-    const food = Store.getFoodById(navigation.getParam('foodId'))
-    this.updateReaction(food, POSITIVE)
+    const activity = Store.getActivityById(navigation.getParam('activityId'))
+    this.updateReaction(activity, POSITIVE)
   }
 
   onPressNegativeReaction() {
     const { navigation } = this.props
-    const food = Store.getFoodById(navigation.getParam('foodId'))
-    this.updateReaction(food, NEGATIVE)
+    const activity = Store.getActivityById(navigation.getParam('activityId'))
+    this.updateReaction(activity, NEGATIVE)
   }
 
-  updateReaction(food, reaction) {
-    Actions.updateReaction(food.id, reaction)
+  updateReaction(activity, reaction) {
+    Actions.updateReaction(activity.id, reaction)
   }
 }
 
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FoodDetails
+export default ActivityDetails

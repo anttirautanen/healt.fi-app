@@ -4,7 +4,7 @@ import { LOADED, LOADING } from './StoreStatus'
 
 class DomainStore {
   @observable status
-  @observable foodsOfDay
+  @observable activities
 
   init() {
     this.status = LOADING
@@ -18,19 +18,19 @@ class DomainStore {
   }
 
   onFetchActivitiesSuccess(activities) {
-    this.foodsOfDay = activities
+    this.activities = activities
     this.status = LOADED
   }
 
-  getFoodById(foodId) {
-    return this.foodsOfDay.find(({ id }) => id ===foodId)
+  getActivityById(activityId) {
+    return this.activities.find(({ id }) => id === activityId)
   }
 
-  updateReaction(foodId, reaction) {
-    const foodsOfDay = this.foodsOfDay.slice()
-    const foodToUpdateIndex = foodsOfDay.findIndex(({ id }) => id === foodId)
-    foodsOfDay[foodToUpdateIndex].reaction = reaction
-    this.foodsOfDay.replace(foodsOfDay)
+  updateReaction(activityId, reaction) {
+    const activities = this.activities.slice()
+    const activityToUpdateIndex = activities.findIndex(({ id }) => id === activityId)
+    activities[activityToUpdateIndex].reaction = reaction
+    this.activities.replace(activities)
   }
 }
 

@@ -3,8 +3,8 @@ import Store from './DomainStore'
 
 class Actions {
   @action
-  updateReaction(foodId, reaction) {
-    Store.updateReaction(foodId, reaction)
+  updateReaction(activityId, reaction) {
+    Store.updateReaction(activityId, reaction)
   }
 }
 
