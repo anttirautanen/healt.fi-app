@@ -9,6 +9,7 @@ import Logo from '../../header/Logo'
 import { ACTIVITY_DETAILS } from '../../Navigator'
 import { NEGATIVE, POSITIVE } from '../../Reaction'
 import { LOADED } from '../../StoreStatus'
+import ActivitiesListFooter from './ActivitiesListFooter'
 
 @observer
 class ActivitiesList extends Component {
@@ -32,7 +33,8 @@ class ActivitiesList extends Component {
         style={styles.container}
         data={toJS(Store.activities)}
         renderItem={({ item }) => <ActivitiesListItem onPressActivitiesListItem={this.onPressActivitiesListItem} onPressReaction={this.onPressReaction} activity={item}/>}
-        keyExtractor={({ id }) => id.toString()}/>
+        keyExtractor={({ id }) => id.toString()}
+        ListFooterComponent={<ActivitiesListFooter/>}/>
     )
   }
 
