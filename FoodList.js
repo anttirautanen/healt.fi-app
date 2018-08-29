@@ -1,13 +1,14 @@
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react/native'
 import React, { Component } from 'react'
-import { FlatList, Image, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native'
+import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import Actions from './Actions'
 import { ALMOST_WHITE, PRIMARY_DARK } from './colors'
 import Store from './DomainStore'
 import Logo from './header/Logo'
 import { FOOD_DETAILS } from './Navigator'
 import { NEGATIVE, POSITIVE } from './Reaction'
+import { LOADED } from './StoreStatus'
 
 @observer
 class FoodList extends Component {
@@ -22,12 +23,16 @@ class FoodList extends Component {
   }
 
   render() {
+    if (Store.status !== LOADED)  {
+      return <View><Text>Loading...</Text></View>
+    }
+
     return (
       <FlatList
         style={styles.container}
         data={toJS(Store.foodsOfDay)}
         renderItem={({ item }) => <FoodListItem onPressFoodListItem={this.onPressFoodListItem} onPressReaction={this.onPressReaction} food={item}/>}
-        keyExtractor={({ id }) => id}/>
+        keyExtractor={({ id }) => id.toString()}/>
     )
   }
 
